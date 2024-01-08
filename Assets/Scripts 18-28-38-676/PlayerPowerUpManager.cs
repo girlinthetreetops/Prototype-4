@@ -23,7 +23,7 @@ public class PlayerPowerUpManager : MonoBehaviour
             Destroy(collision.gameObject);
 
             //Use the function on this powerup type
-            currentPowerUp.StartPowerUp();
+            currentPowerUp.UsePowerUp();
         }
     }
 

@@ -13,12 +13,36 @@ public class SpawnManager : MonoBehaviour
 
     private int spawnOffset = 3;
 
+    public int enemyCount;
+    public int waveNumber = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         spawnPoint = spawner.transform.position;
-        InvokeRepeating("SpawnEnemy", spawnStartDelay, spawningInterval);
+        SpawnEnemyWave(waveNumber);
     }
+
+    void Update()
+    {
+        enemyCount = FindObjectsOfType<Enemy>().Length;
+
+        if (enemyCount == 0)
+        {
+            waveNumber += 1;
+            SpawnEnemyWave(waveNumber);
+
+        }
+    }
+
+    private void SpawnEnemyWave(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
 
     void SpawnEnemy()
     {
